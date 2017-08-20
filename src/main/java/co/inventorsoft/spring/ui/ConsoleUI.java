@@ -1,5 +1,6 @@
 package co.inventorsoft.spring.ui;
 
+import co.inventorsoft.spring.model.format.CSVDataBuilder;
 import co.inventorsoft.spring.model.format.JSONDataBuilder;
 import co.inventorsoft.spring.model.monitoring.disk.DiskMemoryInfo;
 import co.inventorsoft.spring.model.monitoring.memory.RamMemoryInfo;
@@ -17,13 +18,13 @@ public class ConsoleUI {
     public void run() {
         printInfo("Memory information: ");
         final RamMemoryInfo memoryInfo = ramMemoryInfoService.getInfo();
-        final JSONDataBuilder ramInfoBuilder = new JSONDataBuilder();
+        final CSVDataBuilder ramInfoBuilder = new CSVDataBuilder();
         memoryInfo.export(ramInfoBuilder);
         System.out.println(ramInfoBuilder.build());
 
         printInfo("Disk information: ");
         final DiskMemoryInfo info = diskInfoService.getInfo();
-        final JSONDataBuilder diskInfoBuilder = new JSONDataBuilder();
+        final CSVDataBuilder diskInfoBuilder = new CSVDataBuilder();
         info.export(diskInfoBuilder);
         System.out.println(diskInfoBuilder.build());
     }
