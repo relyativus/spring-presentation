@@ -4,10 +4,12 @@ import co.inventorsoft.spring.model.base.Exportable;
 import co.inventorsoft.spring.model.base.FormattedDataBuilder;
 import co.inventorsoft.spring.model.base.FormattedDataBuilderFactory;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+@Component
 public class Logger {
 
     private FileOutputStream fos;

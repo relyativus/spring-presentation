@@ -6,9 +6,11 @@ import co.inventorsoft.spring.model.monitoring.disk.DiskMemoryInfo;
 import co.inventorsoft.spring.model.monitoring.memory.RamMemoryInfo;
 import co.inventorsoft.spring.service.monitoring.disk.DiskInfoService;
 import co.inventorsoft.spring.service.monitoring.memory.RamMemoryInfoService;
-import lombok.SneakyThrows;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
-public class ConsoleUI {
+@Component
+public class ConsoleUI implements CommandLineRunner {
 
     private final RamMemoryInfoService ramMemoryInfoService;
 
@@ -24,8 +26,8 @@ public class ConsoleUI {
         this.formattedDataBuilderFactory = formattedDataBuilderFactory;
     }
 
-    @SneakyThrows
-    public void run() {
+    @Override
+    public void run(String... args) throws Exception {
         printInfo("Memory information: ");
         final RamMemoryInfo memoryInfo = ramMemoryInfoService.getInfo();
         final FormattedDataBuilder ramInfoBuilder = formattedDataBuilderFactory.create();

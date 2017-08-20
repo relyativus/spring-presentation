@@ -2,7 +2,9 @@ package co.inventorsoft.spring.service.monitoring.memory;
 
 import co.inventorsoft.spring.model.monitoring.memory.RamMemoryInfo;
 import co.inventorsoft.spring.service.logger.Logger;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RamMemoryInfoService {
 
     private final Logger logger;
