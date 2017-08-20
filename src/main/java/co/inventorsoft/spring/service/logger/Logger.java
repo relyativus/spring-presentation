@@ -4,6 +4,7 @@ import co.inventorsoft.spring.model.base.Exportable;
 import co.inventorsoft.spring.model.base.FormattedDataBuilder;
 import co.inventorsoft.spring.model.base.FormattedDataBuilderFactory;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.FileOutputStream;
@@ -16,7 +17,7 @@ public class Logger {
 
     private FormattedDataBuilderFactory formattedDataBuilderFactory;
 
-    public Logger(final String directory,
+    public Logger(@Value("${application.logger.directory}") final String directory,
                   final FormattedDataBuilderFactory formattedDataBuilderFactory) {
         this.formattedDataBuilderFactory = formattedDataBuilderFactory;
         openLogFile(directory);
