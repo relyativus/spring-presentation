@@ -1,4 +1,4 @@
-package co.inventorsoft.spring.model.format;
+package co.inventorsoft.spring.model.format.csv;
 
 import co.inventorsoft.spring.model.base.FormattedDataBuilder;
 import co.inventorsoft.spring.model.base.RowBuilder;
@@ -16,6 +16,8 @@ public class CSVDataBuilder implements FormattedDataBuilder {
     private final List<String> header = new ArrayList<>();
 
     private boolean isHeaderConstructed = false;
+
+    CSVDataBuilder() { }
 
     public RowBuilder createRow() {
         return new CsvRowBuilder(this, isHeaderConstructed);

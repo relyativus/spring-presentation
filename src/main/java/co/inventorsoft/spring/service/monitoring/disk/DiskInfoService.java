@@ -12,7 +12,11 @@ import java.util.List;
 
 public class DiskInfoService {
 
-    private Logger logger = new Logger("log/disk.log.txt");
+    private Logger logger;
+
+    public DiskInfoService(Logger logger) {
+        this.logger = logger;
+    }
 
     public DiskMemoryInfo getInfo() throws IOException {
         final Iterable<FileStore> fileStores = FileSystems.getDefault().getFileStores();

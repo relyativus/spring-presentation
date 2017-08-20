@@ -1,7 +1,8 @@
 package co.inventorsoft.spring.service.logger;
 
 import co.inventorsoft.spring.model.base.Exportable;
-import co.inventorsoft.spring.model.format.CSVDataBuilder;
+import co.inventorsoft.spring.model.base.FormattedDataBuilder;
+import co.inventorsoft.spring.model.base.FormattedDataBuilderFactory;
 import lombok.SneakyThrows;
 
 import java.io.FileOutputStream;
@@ -11,19 +12,19 @@ public class Logger {
 
     private FileOutputStream fos;
 
-    public Logger(final String fileName) {
-        try {
-            fos = new FileOutputStream(fileName, true);
-        } catch (IOException e) {
-            System.out.println("Cannot create file for logs. Reason: " + e.getMessage());
-        }
+    private FormattedDataBuilderFactory formattedDataBuilderFactory;
+
+    public Logger(final String directory,
+                  final FormattedDataBuilderFactory formattedDataBuilderFactory) {
+        this.formattedDataBuilderFactory = formattedDataBuilderFactory;
+        openLogFile(directory);
     }
 
     @SneakyThrows
     public void log(final String serviceName, final Exportable exportable) {
-        final CSVDataBuilder csvDataBuilder = new CSVDataBuilder();
-        exportable.export(csvDataBuilder);
-        final String data = csvDataBuilder.build();
+        final FormattedDataBuilder builder = formattedDataBuilderFactory.create();
+        exportable.export(builder);
+        final String data = builder.build();
         fos.write(String.format("%s:%s\n", serviceName, data).getBytes());
         fos.flush();
     }
@@ -31,5 +32,13 @@ public class Logger {
     @SneakyThrows
     public void closeConnection() {
         fos.close();
+    }
+
+    private void openLogFile(String directory) {
+        try {
+            fos = new FileOutputStream(directory + "\\output.log", true);
+        } catch (IOException e) {
+            System.out.println("Cannot create file for logs. Reason: " + e.getMessage());
+        }
     }
 }

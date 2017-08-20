@@ -1,11 +1,13 @@
 package co.inventorsoft.spring.model.base;
 
+import co.inventorsoft.spring.model.format.json.JSONDataBuilder;
+
 /**
  * Convenient builder to create representation of your data in different formats.
  * Implementation of this interface should care about format specific stuff like
  * delimiters and etc.
  *
- * @see co.inventorsoft.spring.model.format.JSONDataBuilder
+ * @see JSONDataBuilder
  */
 public interface FormattedDataBuilder {
 

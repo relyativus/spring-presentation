@@ -5,7 +5,11 @@ import co.inventorsoft.spring.service.logger.Logger;
 
 public class RamMemoryInfoService {
 
-    private Logger logger = new Logger("log/ram.log.txt");
+    private final Logger logger;
+
+    public RamMemoryInfoService(Logger logger) {
+        this.logger = logger;
+    }
 
     public RamMemoryInfo getInfo() {
         final Runtime runtime = Runtime.getRuntime();

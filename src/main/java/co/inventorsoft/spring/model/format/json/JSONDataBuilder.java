@@ -1,4 +1,4 @@
-package co.inventorsoft.spring.model.format;
+package co.inventorsoft.spring.model.format.json;
 
 import co.inventorsoft.spring.model.base.FormattedDataBuilder;
 import co.inventorsoft.spring.model.base.RowBuilder;
@@ -14,6 +14,8 @@ public class JSONDataBuilder implements FormattedDataBuilder {
     private final StringBuilder json = new StringBuilder();
 
     private boolean isFirstRow = true;
+
+    JSONDataBuilder() { }
 
     public RowBuilder createRow() {
         return new JSONRowBuilder(this);
